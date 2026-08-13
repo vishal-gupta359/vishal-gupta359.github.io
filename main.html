@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishal Gupta | Senior Software Developer</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.2);
+            --terminal-green: #3fb950;
+            --font-mono: 'Courier New', Courier, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid #30363d;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: var(--bg-color);
+        }
+
+        .sidebar-header h2 {
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--terminal-green);
+            margin-bottom: 2rem;
+            font-family: var(--font-mono);
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--terminal-green);
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 8px var(--terminal-green);
+        }
+
+        nav a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            margin-bottom: 1rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .social-links a {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-right: 1rem;
+            font-family: var(--font-mono);
+        }
+
+        /* Main Content */
+        main {
+            margin-left: 280px;
+            padding: 4rem 10%;
+            max-width: 1000px;
+        }
+
+        .terminal-header {
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: #161b22;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        section {
+            margin-bottom: 6rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        h1 span {
+            color: var(--terminal-green);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* Highlights Grid */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+
+        .highlight-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Tags */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+        }
+
+        /* Experience Timeline */
+        .job {
+            margin-bottom: 3rem;
+            border-left: 2px solid #30363d;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .job-date {
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .job-company {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: var(--font-mono);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        ul li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--terminal-green);
+            font-family: var(--font-mono);
+        }
+
+        /* Contact Details */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: #161b22;
+            padding: 2rem;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+        
+        .contact-item span {
+            display: block;
+            font-family: var(--font-mono);
+            color: var(--terminal-green);
+            margin-bottom: 0.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid #30363d;
+            }
+            main {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+            }
+            .job-header {
+                flex-direction: column;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-header">
+            <h2>Vishal.Gupta</h2>
+            <p>Backend Developer — Python, Django, AWS, GenAI</p>
+            <div class="status-badge">system.status = online</div>
+            <nav>
+                <a href="#about">./whoami</a>
+                <a href="#skills">./stack</a>
+                <a href="#experience">./experience</a>
+                <a href="#contact">./contact</a>
+            </nav>
+        </div>
+        <div class="social-links">
+            <a href="mailto:vishal210496@gmail.com">email</a>
+            <a href="https://linkedin.com/in/vishal-gupta-818b64114" target="_blank">linkedin</a>
+            <a href="#">resume_download</a>
+        </div>
+    </aside>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="about">
+            <div class="terminal-header">whoami</div>
+            <h1><span>$</span> Vishal Gupta</h1>
+            <p>
+                <strong>Senior Software Developer</strong> — Results-driven Backend Developer with 7+ years of IT experience, specializing in Python (Django/Flask) and RASA-based conversational AI.
+            </p>
+            <p>
+                Currently building scalable, no-code chatbot builder platforms at <strong>Route Mobile Ltd</strong>. I specialize in integrating Generative AI solutions using AWS Bedrock, wiring LLM capabilities into WhatsApp and web messaging channels for enterprise-grade customer engagement.
+            </p>
+            
+            <div class="highlights">
+                <div class="highlight-card">
+                    <div class="number">7+</div>
+                    <div>Years Python/Django</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="number">GenAI</div>
+                    <div>AWS Bedrock & RAG</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="number">Scale</div>
+                    <div>RabbitMQ & Redis</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="terminal-header">ps aux --stack</div>
+            <h2>Running in production.</h2>
+            
+            <div class="skills-grid">
+                <div>
+                    <h3>Python / Backend</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django REST Framework</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">REST APIs</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Conversational AI & GenAI</h3>
+                    <div class="skill-tags">
+                        <span class="tag">AWS Bedrock</span>
+                        <span class="tag">RAG Architecture</span>
+                        <span class="tag">RASA 2.x</span>
+                        <span class="tag">Knowledge Bases & Agents</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Messaging & Databases</h3>
+                    <div class="skill-tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Redis (Pub/Sub)</span>
+                        <span class="tag">RabbitMQ</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>Cloud & Integrations</h3>
+                    <div class="skill-tags">
+                        <span class="tag">AWS (EC2, S3, Lambda, CloudWatch)</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">WhatsApp Business API</span>
+                        <span class="tag">Google Business Messages</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="terminal-header">cat experience.log</div>
+            <h2>Where I've applied this.</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Senior Software Developer</div>
+                    <div class="job-date">April 2024 — Present</div>
+                </div>
+                <div class="job-company">Route Mobile Ltd · Mumbai</div>
+                <ul>
+                    <li>Contributed to RouBot, a no-code/low-code chatbot builder platform enabling businesses to deploy chatbots across WhatsApp and web channels using Django REST Framework.</li>
+                    <li>Integrated AWS Bedrock APIs to incorporate LLM capabilities, implementing Retrieval-Augmented Generation (RAG) using Amazon OpenSearch Serverless.</li>
+                    <li>Built and deployed Bedrock Agents to automate multi-step conversational workflows grounded in proprietary S3-based data.</li>
+                    <li>Integrated RabbitMQ as a messaging queue to handle asynchronous task processing and decoupled microservices, alongside Redis for caching.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Software Developer</div>
+                    <div class="job-date">Sept 2022 — March 2024</div>
+                </div>
+                <div class="job-company">Route Mobile Ltd · Mumbai</div>
+                <ul>
+                    <li>Developed intelligent chatbots for WhatsApp and web channels using the RASA framework, designing NLU pipelines and dialogue management flows.</li>
+                    <li>Built backend APIs using Django REST Framework to manage agent sessions, conversation routing, and real-time message delivery across channels.</li>
+                    <li>Integrated WhatsApp Business API and Google Business Messages (GBM) for seamless live-agent real-time communication.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Software Engineer</div>
+                    <div class="job-date">Sept 2018 — Aug 2022</div>
+                </div>
+                <div class="job-company">Onward Technologies Ltd · Mumbai</div>
+                <ul>
+                    <li>Developed and maintained content management systems and web-based applications for Mathworks using Adobe Experience Manager (AEM 6.4 and 6.5).</li>
+                    <li>Created and managed responsive web pages using HTML, CSS, and Bootstrap, ensuring consistent cross-device rendering.</li>
+                    <li>Managed page lifecycle operations and utilized AEM Multi-Site Manager (MSM) for efficient localization.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="terminal-header">contact --info</div>
+            <h2>Let's build something.</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span>Email</span>
+                    <a href="mailto:vishal210496@gmail.com" style="color: var(--text-main); text-decoration: none;">vishal210496@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>Phone</span>
+                    <span style="color: var(--text-main);">+91 7977221647</span>
+                </div>
+                <div class="contact-item">
+                    <span>Location</span>
+                    <span style="color: var(--text-main);">Mumbai 400068, India</span>
+                </div>
+                <div class="contact-item">
+                    <span>LinkedIn</span>
+                    <a href="https://linkedin.com/in/vishal-gupta-818b64114" target="_blank" style="color: var(--text-main); text-decoration: none;">linkedin.com/in/vishal-gupta-818b64114</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
